@@ -142,7 +142,7 @@ export default function App() {
 
   // Initialize
   useEffect(() => {
-    const saved = localStorage.getItem('murim_best_score');
+    const saved = localStorage.getItem('quizquest_best_score');
     if (saved) setBestScore(parseInt(saved, 10));
   }, []);
 
@@ -150,7 +150,7 @@ export default function App() {
   useEffect(() => {
     if ((gameState.status === 'win' || gameState.status === 'game-over') && gameState.score > bestScore) {
       setBestScore(gameState.score);
-      localStorage.setItem('murim_best_score', gameState.score.toString());
+      localStorage.setItem('quizquest_best_score', gameState.score.toString());
     }
   }, [gameState.status, gameState.score, bestScore]);
 
@@ -217,12 +217,9 @@ export default function App() {
     const freshBoss = { ...selectedBoss, currentHp: selectedBoss.maxHp };
     setEnemy(freshBoss);
     
-    // Reset battle stats
+    // Enter battle (preserve score and enemies defeated)
     setGameState(prev => ({
       ...prev,
-      score: 0,
-      correctAnswers: 0,
-      wrongAnswers: 0,
       playerHp: playerChar?.maxHp || 100, // heal before fight
       status: 'battle'
     }));
@@ -238,12 +235,19 @@ export default function App() {
 
   const returnToSelect = () => {
     if(soundEnabled) playClick();
-    setGameState(prev => ({ ...prev, status: 'boss-select' }));
+    setGameState(prev => ({ 
+      ...prev, 
+      score: 0,
+      correctAnswers: 0,
+      wrongAnswers: 0,
+      enemiesDefeated: 0,
+      status: 'character-select' 
+    }));
   };
 
   // Timer Effect
   useEffect(() => {
-    if (gameState.status !== 'battle' || isAnswering || !currentQuestion || timeLeft <= 0) {
+    if (gameState.status !== 'battle' || isAnswering || showFeedback || !currentQuestion || timeLeft <= 0) {
       if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
@@ -255,7 +259,7 @@ export default function App() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [gameState.status, isAnswering, currentQuestion, timeLeft]);
+  }, [gameState.status, isAnswering, showFeedback, currentQuestion, timeLeft]);
 
   // Store a ref to nextTurn so our timeout always grabs the freshest state
   const nextTurnRef = useRef<() => void>(() => {});
@@ -444,7 +448,7 @@ export default function App() {
       {/* Global Header/Nav */}
       <header className="absolute top-0 w-full p-4 flex justify-between items-center z-50">
         <div className="font-black italic text-xl tracking-tighter text-slate-400">
-          Murim<span className="text-cyan-500">Codex</span>
+          QuizQuest<span className="text-cyan-500">Arena</span>
         </div>
         <button 
           onClick={() => setSoundEnabled(!soundEnabled)}
@@ -548,4 +552,5 @@ export default function App() {
     </div>
   );
 }
+
 

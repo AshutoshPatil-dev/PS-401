@@ -267,9 +267,13 @@ export const EndScreen: React.FC<EndScreenProps> = ({ gameState, player, enemy, 
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={isBattleWin && onContinue ? onContinue : onRestart}
-          className="w-full py-4 bg-slate-800 text-white font-bold text-sm uppercase tracking-widest hover:bg-slate-700 transition-colors border border-slate-700"
+          className={`w-full py-4 text-white font-bold text-lg uppercase tracking-widest transition-colors border-2 ${
+            isWin 
+              ? 'bg-cyan-800 hover:bg-cyan-700 border-cyan-500 shadow-[0_0_20px_rgba(6,182,212,0.4)]' 
+              : 'bg-red-900 border-red-700 hover:bg-red-800 shadow-[0_0_20px_rgba(220,38,38,0.4)]'
+          }`}
         >
-          {isGameComplete ? 'Play Again' : (isBattleWin ? 'Face Next Adversary' : 'Return to Realm')}
+          {isGameComplete ? 'Play Again' : (isBattleWin ? 'Face Next Adversary' : 'Accept Defeat')}
         </motion.button>
       </motion.div>
     </div>

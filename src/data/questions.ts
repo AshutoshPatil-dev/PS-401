@@ -1,204 +1,101 @@
 import { Question } from '../types';
 
 export const questions: Question[] = [
-  // Programming - Easy
-  {
-    id: 'p1',
-    text: 'Which symbol is used for comments in JavaScript?',
-    options: ['//', '#', '<!-- -->', '--'],
-    correctAnswerIndex: 0,
-    explanation: '// is used for single-line comments in JavaScript.',
-    topic: 'Programming',
-    difficulty: 'easy'
-  },
-  {
-    id: 'p2',
-    text: 'What does HTML stand for?',
-    options: ['High Tech Multi Language', 'Hyper Text Markup Language', 'Hyper Tool Meta Language', 'Home Tool Markup Language'],
-    correctAnswerIndex: 1,
-    explanation: 'HTML stands for Hyper Text Markup Language, the standard for creating web pages.',
-    topic: 'Programming',
-    difficulty: 'easy'
-  },
-  {
-    id: 'p3',
-    text: 'Which data type is used for True/False values?',
-    options: ['String', 'Integer', 'Boolean', 'Float'],
-    correctAnswerIndex: 2,
-    explanation: 'Boolean is a logical data type that can only have the values true or false.',
-    topic: 'Programming',
-    difficulty: 'easy'
-  },
-  // Programming - Medium
-  {
-    id: 'p4',
-    text: 'What is the correct way to write an arrow function in JS?',
-    options: ['function => {}', '() => {}', '() -> {}', 'function() -> {}'],
-    correctAnswerIndex: 1,
-    explanation: '() => {} is the standard syntax for ES6 arrow functions.',
-    topic: 'Programming',
-    difficulty: 'medium'
-  },
-  {
-    id: 'p5',
-    text: 'What is the purpose of the "git clone" command?',
-    options: ['To delete a repository', 'To create a copy of a repository', 'To merge branches', 'To push code to GitHub'],
-    correctAnswerIndex: 1,
-    explanation: 'git clone creates a local copy of a remote repository.',
-    topic: 'Programming',
-    difficulty: 'medium'
-  },
-  // Programming - Hard
-  {
-    id: 'p6',
-    text: 'What is the time complexity of a binary search algorithm?',
-    options: ['O(n)', 'O(n^2)', 'O(log n)', 'O(1)'],
-    correctAnswerIndex: 2,
-    explanation: 'Binary search divides the search space in half each step, resulting in O(log n) complexity.',
-    topic: 'Programming',
-    difficulty: 'hard'
-  },
-  {
-    id: 'p7',
-    text: 'What does "Closure" in JavaScript refer to?',
-    options: ['A function bundled with its lexical environment', 'A way to close the browser tab', 'A method to end a loop', 'A private variable'],
-    correctAnswerIndex: 0,
-    explanation: 'A closure is a function that remembers its outer variables even after the outer function has returned.',
-    topic: 'Programming',
-    difficulty: 'hard'
-  },
+  // ===================== EASY (30) =====================
+  { id: 'e1', text: 'Which symbol is used for single-line comments in JavaScript?', options: ['//', '#', '<!-- -->', '--'], correctAnswerIndex: 0, explanation: '// is used for single-line comments in JavaScript.', topic: 'Programming', difficulty: 'easy' },
+  { id: 'e2', text: 'What does HTML stand for?', options: ['High Tech Multi Language', 'Hyper Text Markup Language', 'Hyper Tool Meta Language', 'Home Tool Markup Language'], correctAnswerIndex: 1, explanation: 'HTML stands for Hyper Text Markup Language.', topic: 'Web Dev', difficulty: 'easy' },
+  { id: 'e3', text: 'Which data type is used for True/False values?', options: ['String', 'Integer', 'Boolean', 'Float'], correctAnswerIndex: 2, explanation: 'Boolean is a logical data type that can only have true or false.', topic: 'Programming', difficulty: 'easy' },
+  { id: 'e4', text: 'What does CSS stand for?', options: ['Creative Style Sheets', 'Cascading Style Sheets', 'Computer Style Sheets', 'Colorful Style Sheets'], correctAnswerIndex: 1, explanation: 'CSS stands for Cascading Style Sheets.', topic: 'Web Dev', difficulty: 'easy' },
+  { id: 'e5', text: 'Which programming language is known as the "mother of all languages"?', options: ['Java', 'C', 'Python', 'Assembly'], correctAnswerIndex: 1, explanation: 'C is often considered the mother of many modern languages.', topic: 'Programming', difficulty: 'easy' },
+  { id: 'e6', text: 'Inside which HTML element do we put JavaScript?', options: ['<script>', '<javascript>', '<js>', '<scripting>'], correctAnswerIndex: 0, explanation: 'The <script> tag embeds JS code in HTML.', topic: 'Web Dev', difficulty: 'easy' },
+  { id: 'e7', text: 'How do you define a function in JavaScript?', options: ['function:myFunction()', 'function myFunction()', 'create myFunction()', 'def myFunction()'], correctAnswerIndex: 1, explanation: 'Use the "function" keyword followed by the name.', topic: 'Programming', difficulty: 'easy' },
+  { id: 'e8', text: 'What file extension is used for Python scripts?', options: ['.pt', '.pyt', '.py', '.python'], correctAnswerIndex: 2, explanation: '.py is the standard Python file extension.', topic: 'Programming', difficulty: 'easy' },
+  { id: 'e9', text: 'What is the capital of France?', options: ['London', 'Berlin', 'Paris', 'Rome'], correctAnswerIndex: 2, explanation: 'Paris is the capital of France.', topic: 'General Knowledge', difficulty: 'easy' },
+  { id: 'e10', text: 'Which planet is known as the Red Planet?', options: ['Venus', 'Mars', 'Jupiter', 'Saturn'], correctAnswerIndex: 1, explanation: 'Mars is called the Red Planet due to iron oxide.', topic: 'General Knowledge', difficulty: 'easy' },
+  { id: 'e11', text: 'How many continents are there on Earth?', options: ['5', '6', '7', '8'], correctAnswerIndex: 2, explanation: 'There are 7 continents.', topic: 'General Knowledge', difficulty: 'easy' },
+  { id: 'e12', text: 'What does a loop do?', options: ['Stops the code', 'Runs code repeatedly', 'Hides code', 'Deletes code'], correctAnswerIndex: 1, explanation: 'A loop executes a block of code multiple times.', topic: 'Programming', difficulty: 'easy' },
+  { id: 'e13', text: 'Which operator is used to assign a value to a variable?', options: ['*', '-', '=', 'x'], correctAnswerIndex: 2, explanation: 'The equals sign (=) is the assignment operator.', topic: 'Programming', difficulty: 'easy' },
+  { id: 'e14', text: 'What is an array?', options: ['A single value', 'A collection of items', 'A text string', 'A math function'], correctAnswerIndex: 1, explanation: 'An array is a data structure consisting of a collection of elements.', topic: 'Programming', difficulty: 'easy' },
+  { id: 'e15', text: 'What is a syntax error?', options: ['A logic mistake', 'A mistake in the language rules', 'A server crash', 'A user typo'], correctAnswerIndex: 1, explanation: 'Syntax errors occur when code breaks language grammar rules.', topic: 'Programming', difficulty: 'easy' },
+  { id: 'e16', text: 'What does SQL stand for?', options: ['Structured Query Language', 'Strong Question Language', 'Standard Query Logic', 'Simple Query Logic'], correctAnswerIndex: 0, explanation: 'SQL is Structured Query Language.', topic: 'Databases', difficulty: 'easy' },
+  { id: 'e17', text: 'In Git, what branch is typically the default?', options: ['main', 'default', 'root', 'base'], correctAnswerIndex: 0, explanation: 'main (or formerly master) is the default branch in Git.', topic: 'Version Control', difficulty: 'easy' },
+  { id: 'e18', text: 'What command outputs data to the console in Python?', options: ['console.log()', 'print()', 'echo', 'out.print()'], correctAnswerIndex: 1, explanation: 'print() is the built-in output function in Python.', topic: 'Programming', difficulty: 'easy' },
+  { id: 'e19', text: 'Which HTML tag creates a hyperlink?', options: ['<a>', '<link>', '<href>', '<url>'], correctAnswerIndex: 0, explanation: 'The <a> (anchor) tag creates a hyperlink.', topic: 'Web Dev', difficulty: 'easy' },
+  { id: 'e20', text: 'What is the largest ocean on Earth?', options: ['Atlantic Ocean', 'Indian Ocean', 'Arctic Ocean', 'Pacific Ocean'], correctAnswerIndex: 3, explanation: 'The Pacific Ocean is the largest.', topic: 'General Knowledge', difficulty: 'easy' },
+  { id: 'e21', text: 'What is the boiling point of water in Celsius?', options: ['90', '100', '110', '120'], correctAnswerIndex: 1, explanation: 'Water boils at 100 degrees Celsius.', topic: 'Science', difficulty: 'easy' },
+  { id: 'e22', text: 'Who painted the Mona Lisa?', options: ['Vincent van Gogh', 'Pablo Picasso', 'Leonardo da Vinci', 'Claude Monet'], correctAnswerIndex: 2, explanation: 'Leonardo da Vinci painted the Mona Lisa.', topic: 'Art', difficulty: 'easy' },
+  { id: 'e23', text: 'What is the chemical symbol for gold?', options: ['Go', 'Ag', 'Au', 'Gd'], correctAnswerIndex: 2, explanation: 'Au is the symbol for gold.', topic: 'Science', difficulty: 'easy' },
+  { id: 'e24', text: 'Which animal is known as the King of the Jungle?', options: ['Tiger', 'Elephant', 'Lion', 'Bear'], correctAnswerIndex: 2, explanation: 'The Lion is known as the King of the Jungle.', topic: 'General Knowledge', difficulty: 'easy' },
+  { id: 'e25', text: 'How many sides does a triangle have?', options: ['2', '3', '4', '5'], correctAnswerIndex: 1, explanation: 'A triangle has 3 sides.', topic: 'Math', difficulty: 'easy' },
+  { id: 'e26', text: 'What is the tallest mountain in the world?', options: ['K2', 'Mount Everest', 'Kilimanjaro', 'Denali'], correctAnswerIndex: 1, explanation: 'Mount Everest is the highest mountain above sea level.', topic: 'Geography', difficulty: 'easy' },
+  { id: 'e27', text: 'Which is the largest planet in our solar system?', options: ['Earth', 'Saturn', 'Jupiter', 'Uranus'], correctAnswerIndex: 2, explanation: 'Jupiter is the largest planet.', topic: 'Science', difficulty: 'easy' },
+  { id: 'e28', text: 'What do bees produce?', options: ['Milk', 'Honey', 'Silk', 'Cotton'], correctAnswerIndex: 1, explanation: 'Bees produce honey.', topic: 'General Knowledge', difficulty: 'easy' },
+  { id: 'e29', text: 'Which month has 28 days (usually)?', options: ['January', 'February', 'March', 'April'], correctAnswerIndex: 1, explanation: 'February has 28 days, except in leap years.', topic: 'General Knowledge', difficulty: 'easy' },
+  { id: 'e30', text: 'What color are emeralds?', options: ['Blue', 'Red', 'Green', 'Yellow'], correctAnswerIndex: 2, explanation: 'Emeralds are a green gemstone.', topic: 'General Knowledge', difficulty: 'easy' },
+  
 
-  // General Knowledge - Easy
-  {
-    id: 'g1',
-    text: 'What is the capital of France?',
-    options: ['London', 'Berlin', 'Paris', 'Rome'],
-    correctAnswerIndex: 2,
-    explanation: 'Paris is the capital and most populous city of France.',
-    topic: 'General Knowledge',
-    difficulty: 'easy'
-  },
-  {
-    id: 'g2',
-    text: 'Which planet is known as the Red Planet?',
-    options: ['Venus', 'Mars', 'Jupiter', 'Saturn'],
-    correctAnswerIndex: 1,
-    explanation: 'Mars is often called the Red Planet because of iron oxide on its surface.',
-    topic: 'General Knowledge',
-    difficulty: 'easy'
-  },
-  {
-    id: 'g3',
-    text: 'How many continents are there on Earth?',
-    options: ['5', '6', '7', '8'],
-    correctAnswerIndex: 2,
-    explanation: 'There are 7 continents: Asia, Africa, North America, South America, Antarctica, Europe, and Australia.',
-    topic: 'General Knowledge',
-    difficulty: 'easy'
-  },
-  // General Knowledge - Medium
-  {
-    id: 'g4',
-    text: 'Who painted the Mona Lisa?',
-    options: ['Vincent van Gogh', 'Pablo Picasso', 'Leonardo da Vinci', 'Claude Monet'],
-    correctAnswerIndex: 2,
-    explanation: 'The Mona Lisa was painted by the Italian Renaissance artist Leonardo da Vinci.',
-    topic: 'General Knowledge',
-    difficulty: 'medium'
-  },
-  {
-    id: 'g5',
-    text: 'In which year did World War II end?',
-    options: ['1943', '1944', '1945', '1946'],
-    correctAnswerIndex: 2,
-    explanation: 'WWII ended in 1945 with the surrender of the Axis powers.',
-    topic: 'General Knowledge',
-    difficulty: 'medium'
-  },
-  // General Knowledge - Hard
-  {
-    id: 'g6',
-    text: 'What is the smallest country in the world by land area?',
-    options: ['Monaco', 'Vatican City', 'San Marino', 'Liechtenstein'],
-    correctAnswerIndex: 1,
-    explanation: 'Vatican City is the smallest country, covering only about 44 hectares.',
-    topic: 'General Knowledge',
-    difficulty: 'hard'
-  },
-  {
-    id: 'g7',
-    text: 'What is the currency of Japan?',
-    options: ['Yuan', 'Won', 'Yen', 'Baht'],
-    correctAnswerIndex: 2,
-    explanation: 'The Yen is the official currency of Japan.',
-    topic: 'General Knowledge',
-    difficulty: 'hard'
-  },
+  // ===================== MEDIUM (30) =====================
+  { id: 'm1', text: 'What is the correct way to write an arrow function in JS?', options: ['function => {}', '() => {}', '() -> {}', 'function() -> {}'], correctAnswerIndex: 1, explanation: '() => {} is the ES6 arrow function syntax.', topic: 'Programming', difficulty: 'medium' },
+  { id: 'm2', text: 'What is the purpose of "git clone"?', options: ['Delete a repo', 'Create a local copy of a repo', 'Merge branches', 'Push code'], correctAnswerIndex: 1, explanation: 'git clone downloads the remote repository to your machine.', topic: 'Version Control', difficulty: 'medium' },
+  { id: 'm3', text: 'Which HTTP method is typically used to update data?', options: ['GET', 'POST', 'PUT', 'DELETE'], correctAnswerIndex: 2, explanation: 'PUT and PATCH are used for updating existing data.', topic: 'Web Dev', difficulty: 'medium' },
+  { id: 'm4', text: 'What does "DOM" stand for?', options: ['Document Object Model', 'Data Oriented Module', 'Digital Output Method', 'Document Order Model'], correctAnswerIndex: 0, explanation: 'DOM stands for Document Object Model.', topic: 'Web Dev', difficulty: 'medium' },
+  { id: 'm5', text: 'What does "NaN" mean in JavaScript?', options: ['Not a Null', 'Not a Number', 'Negative and Null', 'No added Numbers'], correctAnswerIndex: 1, explanation: 'NaN stands for Not a Number.', topic: 'Programming', difficulty: 'medium' },
+  { id: 'm6', text: 'Which design pattern ensures only one instance of a class exists?', options: ['Factory', 'Observer', 'Singleton', 'Decorator'], correctAnswerIndex: 2, explanation: 'Singleton pattern restricts instantiation to a single object.', topic: 'Software Design', difficulty: 'medium' },
+  { id: 'm7', text: 'What does "API" stand for?', options: ['Application Programming Interface', 'Automated Process Integration', 'Advanced Programming Instructions', 'Application Process Interface'], correctAnswerIndex: 0, explanation: 'API means Application Programming Interface.', topic: 'Programming', difficulty: 'medium' },
+  { id: 'm8', text: 'In Git, how do you save your changes to the repo?', options: ['git push', 'git commit', 'git add', 'git save'], correctAnswerIndex: 1, explanation: 'git commit permanently records your staged changes in the local repo.', topic: 'Version Control', difficulty: 'medium' },
+  { id: 'm9', text: 'What is a Promise in JavaScript?', options: ['A guarantee to run code', 'An object representing eventual completion/failure', 'A looping construct', 'A mathematical function'], correctAnswerIndex: 1, explanation: 'A Promise represents the eventual result of an async operation.', topic: 'Programming', difficulty: 'medium' },
+  { id: 'm10', text: 'Which SQL command is used to add new rows of data?', options: ['UPDATE', 'ADD', 'INSERT INTO', 'CREATE'], correctAnswerIndex: 2, explanation: 'INSERT INTO is used to add rows.', topic: 'Databases', difficulty: 'medium' },
+  { id: 'm11', text: 'What is the default port for HTTP?', options: ['21', '80', '443', '8080'], correctAnswerIndex: 1, explanation: 'Port 80 is the standard port for unsecured HTTP traffic.', topic: 'Networking', difficulty: 'medium' },
+  { id: 'm12', text: 'What does MVC stand for in web architecture?', options: ['Model View Controller', 'Multiple Variant Code', 'Main Virtual Component', 'Machine Vision Control'], correctAnswerIndex: 0, explanation: 'MVC stands for Model View Controller.', topic: 'Architecture', difficulty: 'medium' },
+  { id: 'm13', text: 'In CSS, what property controls the text size?', options: ['font-style', 'text-style', 'font-size', 'text-size'], correctAnswerIndex: 2, explanation: 'font-size sets the text dimension.', topic: 'Web Dev', difficulty: 'medium' },
+  { id: 'm14', text: 'What is encapsulation in OOP?', options: ['Inheriting properties', 'Hiding internal state and restricting access', 'Polymorphism', 'Creating multiple classes'], correctAnswerIndex: 1, explanation: 'Encapsulation restricts direct access to some of an object\'s properties.', topic: 'Programming', difficulty: 'medium' },
+  { id: 'm15', text: 'Which language is primarily used for iOS app development?', options: ['Java', 'Swift', 'Kotlin', 'C#'], correctAnswerIndex: 1, explanation: 'Swift is Apple\'s primary modern language for iOS.', topic: 'Programming', difficulty: 'medium' },
+  { id: 'm16', text: 'Who wrote "Romeo and Juliet"?', options: ['Charles Dickens', 'J.K. Rowling', 'William Shakespeare', 'Mark Twain'], correctAnswerIndex: 2, explanation: 'Shakespeare wrote Romeo and Juliet.', topic: 'Literature', difficulty: 'medium' },
+  { id: 'm17', text: 'What is the chemical symbol for iron?', options: ['Ir', 'I', 'Fe', 'In'], correctAnswerIndex: 2, explanation: 'Fe comes from the Latin word "ferrum".', topic: 'Science', difficulty: 'medium' },
+  { id: 'm18', text: 'Which element is most abundant in the Earth\'s atmosphere?', options: ['Oxygen', 'Carbon Dioxide', 'Nitrogen', 'Hydrogen'], correctAnswerIndex: 2, explanation: 'Nitrogen makes up about 78% of the atmosphere.', topic: 'Science', difficulty: 'medium' },
+  { id: 'm19', text: 'What year did the Titanic sink?', options: ['1912', '1905', '1920', '1898'], correctAnswerIndex: 0, explanation: 'The Titanic sank in April 1912.', topic: 'History', difficulty: 'medium' },
+  { id: 'm20', text: 'Who was the first person to walk on the moon?', options: ['Buzz Aldrin', 'Yuri Gagarin', 'Neil Armstrong', 'Michael Collins'], correctAnswerIndex: 2, explanation: 'Neil Armstrong was the first person on the moon.', topic: 'History', difficulty: 'medium' },
+  { id: 'm21', text: 'What is the hardest natural substance on Earth?', options: ['Gold', 'Iron', 'Diamond', 'Platinum'], correctAnswerIndex: 2, explanation: 'Diamond is the hardest known naturally occurring material.', topic: 'Science', difficulty: 'medium' },
+  { id: 'm22', text: 'Which country is known as the Land of the Rising Sun?', options: ['China', 'Japan', 'Thailand', 'South Korea'], correctAnswerIndex: 1, explanation: 'Japan translates to Land of the Rising Sun.', topic: 'Geography', difficulty: 'medium' },
+  { id: 'm23', text: 'What is the longest river in the world?', options: ['Amazon River', 'Nile River', 'Yangtze River', 'Mississippi River'], correctAnswerIndex: 1, explanation: 'The Nile is officially recognized as the longest river in the world.', topic: 'Geography', difficulty: 'medium' },
+  { id: 'm24', text: 'Who developed the theory of relativity?', options: ['Isaac Newton', 'Niels Bohr', 'Albert Einstein', 'Galileo Galilei'], correctAnswerIndex: 2, explanation: 'Einstein developed the revolutionary theory of relativity.', topic: 'Science', difficulty: 'medium' },
+  { id: 'm25', text: 'What is the capital of Australia?', options: ['Sydney', 'Melbourne', 'Canberra', 'Perth'], correctAnswerIndex: 2, explanation: 'Canberra is the purpose-built capital of Australia.', topic: 'Geography', difficulty: 'medium' },
+  { id: 'm26', text: 'In what year did World War II end?', options: ['1941', '1945', '1918', '1939'], correctAnswerIndex: 1, explanation: 'WWII ended in 1945.', topic: 'History', difficulty: 'medium' },
+  { id: 'm27', text: 'What is the currency of the United Kingdom?', options: ['Euro', 'Dollar', 'Pound Sterling', 'Franc'], correctAnswerIndex: 2, explanation: 'The British Pound Sterling is the official currency.', topic: 'Geography', difficulty: 'medium' },
+  { id: 'm28', text: 'What is the main ingredient in guacamole?', options: ['Tomato', 'Onion', 'Avocado', 'Lemon'], correctAnswerIndex: 2, explanation: 'Avocados are the base of guacamole.', topic: 'Food', difficulty: 'medium' },
+  { id: 'm29', text: 'Which planet is famous for its visible rings?', options: ['Jupiter', 'Saturn', 'Neptune', 'Uranus'], correctAnswerIndex: 1, explanation: 'Saturn has a massive and highly visible ring system.', topic: 'Science', difficulty: 'medium' },
+  { id: 'm30', text: 'Who painted the Sistine Chapel ceiling?', options: ['Leonardo da Vinci', 'Michelangelo', 'Raphael', 'Donatello'], correctAnswerIndex: 1, explanation: 'Michelangelo spent years painting the chapel ceiling.', topic: 'Art', difficulty: 'medium' },
 
-  // Science / Technology - Easy
-  {
-    id: 's1',
-    text: 'What is the main gas that humans breathe in to survive?',
-    options: ['Nitrogen', 'Oxygen', 'Carbon Dioxide', 'Hydrogen'],
-    correctAnswerIndex: 1,
-    explanation: 'Humans need oxygen for cellular respiration.',
-    topic: 'Science / Technology',
-    difficulty: 'easy'
-  },
-  {
-    id: 's2',
-    text: 'What does "CPU" stand for?',
-    options: ['Computer Processing Unit', 'Central Processing Unit', 'Core Processing Unit', 'Central Process Utility'],
-    correctAnswerIndex: 1,
-    explanation: 'CPU stands for Central Processing Unit, the "brain" of the computer.',
-    topic: 'Science / Technology',
-    difficulty: 'easy'
-  },
-  {
-    id: 's3',
-    text: 'Which is the largest organ of the human body?',
-    options: ['Heart', 'Lungs', 'Liver', 'Skin'],
-    correctAnswerIndex: 3,
-    explanation: 'The skin is the largest organ, covering the entire outside of the body.',
-    topic: 'Science / Technology',
-    difficulty: 'easy'
-  },
-  // Science / Technology - Medium
-  {
-    id: 's4',
-    text: 'What is the center of an atom called?',
-    options: ['Neutron', 'Proton', 'Nucleus', 'Electron'],
-    correctAnswerIndex: 2,
-    explanation: 'The nucleus is the small, dense region at the center of an atom.',
-    topic: 'Science / Technology',
-    difficulty: 'medium'
-  },
-  {
-    id: 's5',
-    text: 'Which company developed the iPhone?',
-    options: ['Samsung', 'Microsoft', 'Apple', 'Google'],
-    correctAnswerIndex: 2,
-    explanation: 'The iPhone was developed and is marketed by Apple Inc.',
-    topic: 'Science / Technology',
-    difficulty: 'medium'
-  },
-  // Science / Technology - Hard
-  {
-    id: 's6',
-    text: 'What process do plants use to make their food from sunlight?',
-    options: ['Respiration', 'Photosynthesis', 'Fermentation', 'Transpiration'],
-    correctAnswerIndex: 1,
-    explanation: 'Photosynthesis is the process by which green plants use sunlight to synthesize nutrients.',
-    topic: 'Science / Technology',
-    difficulty: 'hard'
-  },
-  {
-    id: 's7',
-    text: 'What is the hardest natural substance on Earth?',
-    options: ['Gold', 'Iron', 'Diamond', 'Quartz'],
-    correctAnswerIndex: 2,
-    explanation: 'Diamond is the hardest natural substance due to its crystal structure.',
-    topic: 'Science / Technology',
-    difficulty: 'hard'
-  }
+
+  // ===================== HARD (30) =====================
+  { id: 'h1', text: 'What is the time complexity of a binary search?', options: ['O(n)', 'O(n^2)', 'O(log n)', 'O(1)'], correctAnswerIndex: 2, explanation: 'Binary search halves the search space each step, making it O(log n).', topic: 'Algorithms', difficulty: 'hard' },
+  { id: 'h2', text: 'What does "Closure" in JavaScript refer to?', options: ['Function + lexical environment', 'Closing a tab', 'Ending a loop', 'Private variable'], correctAnswerIndex: 0, explanation: 'A closure is a function bundled with context to read its outer variables.', topic: 'Programming', difficulty: 'hard' },
+  { id: 'h3', text: 'What is the Halting Problem?', options: ['A bug in a loop', 'Determining if a program handles all loads', 'A hardware failure', 'Proving if an arbitrary program will ever finish'], correctAnswerIndex: 3, explanation: 'Alan Turing proved there is no general algorithm to solve the halting problem.', topic: 'Computer Science', difficulty: 'hard' },
+  { id: 'h4', text: 'In React, what are higher-order components?', options: ['Components that render other components', 'Functions taking a component and returning a new one', 'High complexity UI elements', 'Root level components'], correctAnswerIndex: 1, explanation: 'HOCs are a pattern for reusing logic by returning a wrapped component.', topic: 'Web Dev', difficulty: 'hard' },
+  { id: 'h5', text: 'What is tail call optimization?', options: ['Optimizing a loop target', 'Reusing the stack frame for recursive function calls at the end', 'Compressing code bundles', 'Caching API responses on the tail end'], correctAnswerIndex: 1, explanation: 'TCO stops recursive functions from overflowing the call stack by reusing the active frame.', topic: 'Programming', difficulty: 'hard' },
+  { id: 'h6', text: 'What does SOLID stand for in OOP?', options: ['Simple Objects Look Incredible Daily', 'Single Responsibility, Open-Closed, Liskov, Interface Segregation, Dependency Inversion', 'State, Orientation, Logic, Interface, Data', 'System Objects Logic Integration Deployment'], correctAnswerIndex: 1, explanation: 'SOLID is an acronym for five design principles meant to make object-oriented designs more understandable.', topic: 'Software Design', difficulty: 'hard' },
+  { id: 'h7', text: 'What is Event Delegation in JS?', options: ['Passing events to a server', 'Attaching one event listener to a parent to handle bubble events', 'Delegating tasks to Web Workers', 'Creating custom synthetic events'], correctAnswerIndex: 1, explanation: 'Event delegation allows you to avoid adding thousands of listeners by putting one on the shared parent.', topic: 'Web Dev', difficulty: 'hard' },
+  { id: 'h8', text: 'What is the CAP Theorem?', options: ['Consistency, Availability, Partition Tolerance', 'Concurrency, Authorization, Processing', 'Compute, Access, Power', 'Code, API, Platform'], correctAnswerIndex: 0, explanation: 'It states a distributed data store can only guarantee 2 of these 3 traits simultaneously.', topic: 'Database Architecture', difficulty: 'hard' },
+  { id: 'h9', text: 'What is a memory leak?', options: ['When electricity leaks from RAM modules', 'Failing to release discarded memory back to the OS', 'When a large array is pushed to a DB', 'A virus taking over active memory'], correctAnswerIndex: 1, explanation: 'Memory leaks cause apps to consume more and more memory until they crash.', topic: 'Programming', difficulty: 'hard' },
+  { id: 'h10', text: 'What is the main difference between TCP and UDP?', options: ['TCP is faster', 'UDP guarantees delivery', 'TCP is connection-oriented and reliable, UDP is connectionless', 'There is no difference'], correctAnswerIndex: 2, explanation: 'TCP ensures packets arrive intact and in order; UDP fires and forgets.', topic: 'Networking', difficulty: 'hard' },
+  { id: 'h11', text: 'What is a race condition?', options: ['When a while loop iterates too fast', 'When threads read/write shared data simultaneously, causing unpredictable states', 'A networking timeout threshold', 'A CPU overheating failure'], correctAnswerIndex: 1, explanation: 'Race conditions are timing-based bugs found in multithreaded apps.', topic: 'Programming', difficulty: 'hard' },
+  { id: 'h12', text: 'What is dependency injection?', options: ['Using npm install via script', 'Passing dependent objects into a class rather than instantiating them inside', 'Injecting malicious code into the DOM', 'A SQL vulnerability trick'], correctAnswerIndex: 1, explanation: 'It is a technique for achieving Inversion of Control to decouple code.', topic: 'Software Architecture', difficulty: 'hard' },
+  { id: 'h13', text: 'What does "Idempotent" mean in REST APIs?', options: ['The method crashes the server', 'Multiple identical requests have the same effect as a single one', 'The method is stateless', 'The response is instantly cached'], correctAnswerIndex: 1, explanation: 'For example, hitting a PUT request 10 times yields the exact same resultant backend state as hitting it once.', topic: 'Web APIs', difficulty: 'hard' },
+  { id: 'h14', text: 'What is currying in functional programming?', options: ['Making code execution hot', 'Translating f(a,b,c) into callable chain f(a)(b)(c)', 'A sorting algorithm for sets', 'Loop unrolling techniques'], correctAnswerIndex: 1, explanation: 'Currying decomposes a multi-argument function into a chain of single-argument functions.', topic: 'Programming', difficulty: 'hard' },
+  { id: 'h15', text: 'Which sorting algorithm has the best worst-case time complexity?', options: ['Quicksort', 'Insertion Sort', 'Selection Sort', 'Merge Sort'], correctAnswerIndex: 3, explanation: 'Merge sort guarantees O(n log n) running time even in the worst case.', topic: 'Algorithms', difficulty: 'hard' },
+  { id: 'h16', text: 'What was the name of the first artificial Earth satellite?', options: ['Apollo 11', 'Sputnik 1', 'Explorer 1', 'Vostok 1'], correctAnswerIndex: 1, explanation: 'Sputnik 1 was launched by the Soviet Union in 1957.', topic: 'History', difficulty: 'hard' },
+  { id: 'h17', text: 'Which chemical element has the highest melting point?', options: ['Tungsten', 'Titanium', 'Iron', 'Platinum'], correctAnswerIndex: 0, explanation: 'Tungsten melts at 3422 °C, making it ideal for lightbulb filaments.', topic: 'Science', difficulty: 'hard' },
+  { id: 'h18', text: 'What is the capital of Iceland?', options: ['Oslo', 'Helsinki', 'Reykjavik', 'Stockholm'], correctAnswerIndex: 2, explanation: 'Reykjavik is the capital and largest city of Iceland.', topic: 'Geography', difficulty: 'hard' },
+  { id: 'h19', text: 'Who authored the dystopian novel "1984"?', options: ['Aldous Huxley', 'George Orwell', 'Ray Bradbury', 'H.G. Wells'], correctAnswerIndex: 1, explanation: 'George Orwell published "1984" in 1949.', topic: 'Literature', difficulty: 'hard' },
+  { id: 'h20', text: 'In Greek mythology, who was the king of the gods?', options: ['Apollo', 'Poseidon', 'Hades', 'Zeus'], correctAnswerIndex: 3, explanation: 'Zeus ruled Mount Olympus.', topic: 'Mythology', difficulty: 'hard' },
+  { id: 'h21', text: 'What is the rarest human blood type?', options: ['O negative', 'B negative', 'AB negative', 'A positive'], correctAnswerIndex: 2, explanation: 'AB negative is present in less than 1% of the global population.', topic: 'Biology', difficulty: 'hard' },
+  { id: 'h22', text: 'What scale is used to measure earthquake magnitude?', options: ['Fujita scale', 'Saffir-Simpson', 'Richter scale', 'Mercalli scale'], correctAnswerIndex: 2, explanation: 'The Richter scale (and subsequent moment magnitude scale) quantifies earthquake energy.', topic: 'Science', difficulty: 'hard' },
+  { id: 'h23', text: 'What chemical element makes up the vast majority of the Sun?', options: ['Helium', 'Oxygen', 'Hydrogen', 'Carbon'], correctAnswerIndex: 2, explanation: 'The sun is roughly 73% hydrogen by mass.', topic: 'Astronomy', difficulty: 'hard' },
+  { id: 'h24', text: 'Who is known as the father of modern theoretical physics?', options: ['Isaac Newton', 'Galileo Galilei', 'Albert Einstein', 'Niels Bohr'], correctAnswerIndex: 2, explanation: 'Einstein revolutionized physics with relativity and quantum mechanics theory.', topic: 'Science', difficulty: 'hard' },
+  { id: 'h25', text: 'What is the smallest bone in the human body?', options: ['Stapes (inner ear)', 'Phalanx (toe)', 'Carpal (wrist)', 'Mandible (jaw)'], correctAnswerIndex: 0, explanation: 'The stapes bone transmits sound vibrations to the inner ear.', topic: 'Anatomy', difficulty: 'hard' },
+  { id: 'h26', text: 'Which treaty effectively ended World War I?', options: ['Treaty of Paris', 'Treaty of Versailles', 'Treaty of Tordesillas', 'Treaty of Ghent'], correctAnswerIndex: 1, explanation: 'The Treaty of Versailles was signed in 1919 outside Paris.', topic: 'History', difficulty: 'hard' },
+  { id: 'h27', text: 'What is the capital of Canada?', options: ['Toronto', 'Vancouver', 'Montreal', 'Ottawa'], correctAnswerIndex: 3, explanation: 'Ottawa was notably chosen by Queen Victoria in 1857.', topic: 'Geography', difficulty: 'hard' },
+  { id: 'h28', text: 'Who is accidentally credited with discovering penicillin?', options: ['Marie Curie', 'Alexander Fleming', 'Louis Pasteur', 'Joseph Lister'], correctAnswerIndex: 1, explanation: 'Fleming discovered it via a mold contamination in his lab in 1928.', topic: 'History', difficulty: 'hard' },
+  { id: 'h29', text: 'What is the deepest known point in Earth\'s oceans?', options: ['Tonga Trench', 'Mariana Trench', 'Puerto Rico Trench', 'Java Trench'], correctAnswerIndex: 1, explanation: 'The Mariana Trench reaches almost 11,000 meters deep.', topic: 'Geography', difficulty: 'hard' },
+  { id: 'h30', text: 'What is the official national animal of Scotland?', options: ['Lion', 'Unicorn', 'Eagle', 'Stag'], correctAnswerIndex: 1, explanation: 'The mythical unicorn has been a Scottish heraldic symbol since the 12th century.', topic: 'General Knowledge', difficulty: 'hard' }
 ];

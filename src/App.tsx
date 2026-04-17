@@ -54,7 +54,7 @@ const CHARACTERS: PlayerCharacter[] = [
     attackType: 'melee',
     winImagePath: '/backend_win.png',
     deathImagePath: '/backend_death.png'
-  },
+  }
 ];
 
 const BOSSES: Enemy[] = [
@@ -167,7 +167,29 @@ export default function App() {
     const targetPool = available.length > 0 ? available : pool;
     if (targetPool.length === 0) return null;
     const randomIndex = Math.floor(Math.random() * targetPool.length);
-    return targetPool[randomIndex];
+    const selected = targetPool[randomIndex];
+
+    // Shuffle the options to jumble them up
+    // Map options to keep track of the correct answer
+    const mappedOptions = selected.options.map((opt, index) => ({
+      text: opt,
+      isCorrect: index === selected.correctAnswerIndex
+    }));
+    
+    // Fisher-Yates shuffle
+    for (let i = mappedOptions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [mappedOptions[i], mappedOptions[j]] = [mappedOptions[j], mappedOptions[i]];
+    }
+
+    const shuffledOptions = mappedOptions.map(m => m.text);
+    const newCorrectIndex = mappedOptions.findIndex(m => m.isCorrect);
+
+    return {
+      ...selected,
+      options: shuffledOptions,
+      correctAnswerIndex: newCorrectIndex
+    };
   }, []);
 
   const handleStart = () => {

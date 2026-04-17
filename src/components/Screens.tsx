@@ -18,13 +18,13 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, bestScore }) 
         transition={{ type: 'spring', bounce: 0.5 }}
         className="max-w-2xl w-full p-8 md:p-12 rounded-2xl relative z-10"
       >
-        <div className="mb-4 text-cyan-500 font-mono text-sm tracking-[0.3em] uppercase">Murim Series</div>
+        <div className="mb-4 text-cyan-500 font-mono text-sm tracking-[0.3em] uppercase">RPG Battle Trivia</div>
         <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-slate-100 to-slate-400 mb-8 drop-shadow-lg tracking-tighter">
-          DEV'S <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">ASCENSION</span>
+          QUIZQUEST <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">ARENA</span>
         </h1>
         
         <p className="text-slate-400 text-lg md:text-xl mb-12 leading-relaxed max-w-lg mx-auto font-serif italic">
-          Test your knowledge against the demonic sects. Master the code, cultivate your inner logic, and reach the apex of development.
+          Test your knowledge against the gauntlet of developers. Master the code, cultivate your inner logic, and reach the apex of development.
         </p>
 
         {bestScore > 0 && (
@@ -279,4 +279,5 @@ export const EndScreen: React.FC<EndScreenProps> = ({ gameState, player, enemy, 
     </div>
   );
 };
+
 

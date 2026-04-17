@@ -1,0 +1,6 @@
+{
+  "name": "QuizQuest Arena",
+  "description": "A 2D Quiz-based RPG battle game where players answer questions to defeat enemies across multiple stages.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

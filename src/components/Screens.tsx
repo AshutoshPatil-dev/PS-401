@@ -280,4 +280,3 @@ export const EndScreen: React.FC<EndScreenProps> = ({ gameState, player, enemy, 
   );
 };
 
-

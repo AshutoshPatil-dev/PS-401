@@ -13,7 +13,7 @@ const CHARACTERS: PlayerCharacter[] = [
     id: 'hero', 
     name: 'Golden Tome Novice', 
     maxHp: 120, 
-    description: 'A spirited youth holding an ancient scroll. Balanced stats and unyielding determination.', 
+    description: 'He is a swordsman. Balanced stats and unyielding determination.', 
     imagePath: '/hero.png',
     attackImagePaths: [
       '/hero_attack_1.png', 
@@ -28,7 +28,7 @@ const CHARACTERS: PlayerCharacter[] = [
     id: 'frontend', 
     name: 'Qi Router Swift', 
     maxHp: 100, 
-    description: 'A nimble swordmaster of the Frontend Sect. Relies on speed and precision strikes.',
+    description: "He's a magician. Relies on speed and precision strikes.",
     imagePath: '/frontend.png',
     attackImagePaths: [
       '/frontend_attack_1.png', 
@@ -136,7 +136,15 @@ export default function App() {
   // Settings & Storage
   const [bestScore, setBestScore] = useState(0);
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const { playSuccess, playError, playClick } = useSound();
+  const { 
+    playSuccess, 
+    playError, 
+    playClick, 
+    playSwordAttack, 
+    playMagicAttack, 
+    playPunchAttack, 
+    playEnemyAttack 
+  } = useSound();
 
   const timerRef = useRef<number | null>(null);
 
@@ -312,7 +320,13 @@ export default function App() {
     if (!currentQuestion || !enemy) return;
 
     if (isCorrect) {
-      if(soundEnabled) playSuccess();
+      if(soundEnabled) {
+        playSuccess();
+        // Play distinct player attack sound
+        if (playerChar?.id === 'hero') playSwordAttack();
+        else if (playerChar?.id === 'frontend') playMagicAttack();
+        else if (playerChar?.id === 'backend') playPunchAttack();
+      }
       const dmg = DAMAGE_MAP[currentQuestion.difficulty];
       setIsPlayerAttacking(true);
       
@@ -338,6 +352,7 @@ export default function App() {
       
       setTimeout(() => {
         setIsEnemyAttacking(true);
+        if(soundEnabled) playEnemyAttack();
         setTimeout(() => {
           setDamageTakenByPlayer(dmg);
           setGameState(prev => ({
@@ -552,5 +567,4 @@ export default function App() {
     </div>
   );
 }
-
 

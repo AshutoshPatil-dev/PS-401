@@ -167,6 +167,28 @@ export const BattleArena: React.FC<BattleArenaProps> = ({
   const playerAttackType = player?.attackType || 'melee';
   const enemyAttackType = enemy?.attackType || 'melee';
 
+  let bgGradient = "from-slate-900 via-slate-800 to-black";
+  let mountainColor1 = "#0f172a";
+  let mountainColor2 = "#1e293b";
+  let bgImage = "/background_easy.jpeg"; // Default to easy if enemy is undefined
+
+  if (enemy?.difficulty === 'easy') {
+    bgGradient = "from-emerald-950 via-teal-900 to-black";
+    mountainColor1 = "#064e3b";
+    mountainColor2 = "#0f766e";
+    bgImage = "/background_easy.jpeg";
+  } else if (enemy?.difficulty === 'medium') {
+    bgGradient = "from-indigo-950 via-purple-900 to-black";
+    mountainColor1 = "#312e81";
+    mountainColor2 = "#581c87";
+    bgImage = "/background_medium.jpeg";
+  } else if (enemy?.difficulty === 'hard') {
+    bgGradient = "from-red-950 via-orange-950 to-black";
+    mountainColor1 = "#450a0a";
+    mountainColor2 = "#7c2d12";
+    bgImage = "/background_hard.jpeg";
+  }
+
   const playerAnim = isPlayerAttacking 
     ? (playerAttackType === 'melee' ? { x: [0, 250, -20, 0], scale: [1, 1.2, 0.9, 1], zIndex: 50 } : { x: [0, 20, -5, 0], scale: [1, 1.1, 0.95, 1], zIndex: 50 }) 
     : isEnemyAttacking 
@@ -179,24 +201,24 @@ export const BattleArena: React.FC<BattleArenaProps> = ({
     ? { x: [0, 20, -10, 5, 0], filter: ['brightness(1)', 'brightness(10) saturate(2)', 'brightness(1)'] } 
     : { y: [0, -5, 0] };
   return (
-    <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] border-4 border-slate-800 flex items-end justify-between px-8 md:px-24 pb-12">
+    <div className={`relative w-full aspect-video rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] border-4 border-slate-800 flex items-end justify-between px-8 md:px-24 pb-12 bg-gradient-to-b ${bgGradient}`}>
       {/* ---------------- BACKGROUND LAYER ---------------- */}
-      <div className="absolute inset-0 bg-slate-950 pointer-events-none z-0 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Custom Uploaded Background */}
         <img 
-          src="/background.png" 
-          alt="Battlefield"
+          src={bgImage} 
+          alt={`Battlefield ${enemy?.difficulty}`}
           className="absolute inset-0 w-full h-full object-cover opacity-80"
           onError={(e) => { e.currentTarget.style.display = 'none'; }}
         />
         {/* Base Layer gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-slate-900/40 to-black/90 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/90 mix-blend-multiply"></div>
         {/* Atmosphere layer */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Background Mountains (SVG) */}
-        <svg preserveAspectRatio="none" viewBox="0 0 100 100" className="absolute bottom-0 w-full h-1/2 opacity-30">
-          <path d="M0 100 L0 50 L20 30 L40 60 L70 10 L100 40 L100 100 Z" fill="#0f172a" />
-          <path d="M0 100 L0 70 L30 40 L50 80 L80 30 L100 60 L100 100 Z" fill="#1e293b" />
+        <svg preserveAspectRatio="none" viewBox="0 0 100 100" className="absolute bottom-0 w-full h-1/2 opacity-60">
+          <path d="M0 100 L0 50 L20 30 L40 60 L70 10 L100 40 L100 100 Z" fill={mountainColor1} />
+          <path d="M0 100 L0 70 L30 40 L50 80 L80 30 L100 60 L100 100 Z" fill={mountainColor2} />
         </svg>
         {/* Ground */}
         <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-black to-transparent" />

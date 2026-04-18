@@ -29,7 +29,14 @@ const CHARACTERS: PlayerCharacter[] = [
     name: 'Qi Router Swift', 
     maxHp: 100, 
     description: 'A nimble swordmaster of the Frontend Sect. Relies on speed and precision strikes.',
-    attackType: 'melee',
+    imagePath: '/frontend.png',
+    attackImagePaths: [
+      '/frontend_attack_1.png', 
+      '/frontend_attack_2.png', 
+      '/frontend_attack_3.png'
+    ],
+    projectileImagePath: '/frontend_projectile.png',
+    attackType: 'ranged',
     winImagePath: '/frontend_win.png',
     deathImagePath: '/frontend_death.png'
   },
@@ -38,10 +45,16 @@ const CHARACTERS: PlayerCharacter[] = [
     name: 'Iron Body Node', 
     maxHp: 150, 
     description: 'A stalwart practitioner of the Backend Brawlers. Endures heavy damage to deliver crushing blows.',
+    imagePath: '/backend.png',
+    attackImagePaths: [
+      '/backend_attack_1.png', 
+      '/backend_attack_2.png', 
+      '/backend_attack_3.png'
+    ],
     attackType: 'melee',
     winImagePath: '/backend_win.png',
     deathImagePath: '/backend_death.png'
-  },
+  }
 ];
 
 const BOSSES: Enemy[] = [
@@ -154,7 +167,29 @@ export default function App() {
     const targetPool = available.length > 0 ? available : pool;
     if (targetPool.length === 0) return null;
     const randomIndex = Math.floor(Math.random() * targetPool.length);
-    return targetPool[randomIndex];
+    const selected = targetPool[randomIndex];
+
+    // Shuffle the options to jumble them up
+    // Map options to keep track of the correct answer
+    const mappedOptions = selected.options.map((opt, index) => ({
+      text: opt,
+      isCorrect: index === selected.correctAnswerIndex
+    }));
+    
+    // Fisher-Yates shuffle
+    for (let i = mappedOptions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [mappedOptions[i], mappedOptions[j]] = [mappedOptions[j], mappedOptions[i]];
+    }
+
+    const shuffledOptions = mappedOptions.map(m => m.text);
+    const newCorrectIndex = mappedOptions.findIndex(m => m.isCorrect);
+
+    return {
+      ...selected,
+      options: shuffledOptions,
+      correctAnswerIndex: newCorrectIndex
+    };
   }, []);
 
   const handleStart = () => {
@@ -182,12 +217,9 @@ export default function App() {
     const freshBoss = { ...selectedBoss, currentHp: selectedBoss.maxHp };
     setEnemy(freshBoss);
     
-    // Reset battle stats
+    // Enter battle (preserve score and enemies defeated)
     setGameState(prev => ({
       ...prev,
-      score: 0,
-      correctAnswers: 0,
-      wrongAnswers: 0,
       playerHp: playerChar?.maxHp || 100, // heal before fight
       status: 'battle'
     }));
@@ -203,12 +235,19 @@ export default function App() {
 
   const returnToSelect = () => {
     if(soundEnabled) playClick();
-    setGameState(prev => ({ ...prev, status: 'boss-select' }));
+    setGameState(prev => ({ 
+      ...prev, 
+      score: 0,
+      correctAnswers: 0,
+      wrongAnswers: 0,
+      enemiesDefeated: 0,
+      status: 'character-select' 
+    }));
   };
 
   // Timer Effect
   useEffect(() => {
-    if (gameState.status !== 'battle' || isAnswering || !currentQuestion || timeLeft <= 0) {
+    if (gameState.status !== 'battle' || isAnswering || showFeedback || !currentQuestion || timeLeft <= 0) {
       if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
@@ -220,7 +259,7 @@ export default function App() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [gameState.status, isAnswering, currentQuestion, timeLeft]);
+  }, [gameState.status, isAnswering, showFeedback, currentQuestion, timeLeft]);
 
   // Store a ref to nextTurn so our timeout always grabs the freshest state
   const nextTurnRef = useRef<() => void>(() => {});
@@ -342,12 +381,12 @@ export default function App() {
             status: 'win'
           };
         } else {
-          addToLog(`${enemy.name} defeated! Choose your next opponent.`, 'system');
+          addToLog(`${enemy.name} defeated!`, 'system');
           return {
             ...prev,
             score: prev.score + 500, // Defeat bonus
             enemiesDefeated: newDefeated,
-            status: 'boss-select'
+            status: 'battle-win'
           };
         }
       });
@@ -359,9 +398,16 @@ export default function App() {
     // Proceed to next question
     const nextQ = getNewQuestion(questionPool, enemy.difficulty);
     if (!nextQ) {
-      // Out of questions? Force win for this scope
+      // Out of questions? Force battle win for this scope, unless it's their 3rd boss
       addToLog('You survived all techniques.', 'system');
-      setGameState(prev => ({ ...prev, status: 'win' }));
+      setGameState(prev => {
+        const newDefeated = prev.enemiesDefeated + 1;
+        return { 
+          ...prev, 
+          enemiesDefeated: newDefeated,
+          status: newDefeated >= 3 ? 'win' : 'battle-win' 
+        }
+      });
       return;
     }
 
@@ -387,6 +433,8 @@ export default function App() {
         handleStart();
       } else if ((gameState.status === 'game-over' || gameState.status === 'win') && e.key === 'Enter') {
         returnToSelect();
+      } else if (gameState.status === 'battle-win' && e.key === 'Enter') {
+        setGameState(prev => ({ ...prev, status: 'boss-select' }));
       }
     };
 
@@ -424,8 +472,15 @@ export default function App() {
         <BossSelectScreen bosses={BOSSES} onSelect={handleSelectBoss} />
       )}
 
-      {(gameState.status === 'win' || gameState.status === 'game-over') && (
-        <EndScreen gameState={gameState} player={playerChar} enemy={enemy} onRestart={returnToSelect} bestScore={bestScore} />
+      {(gameState.status === 'win' || gameState.status === 'battle-win' || gameState.status === 'game-over') && (
+        <EndScreen 
+          gameState={gameState} 
+          player={playerChar} 
+          enemy={enemy} 
+          onRestart={returnToSelect} 
+          onContinue={() => setGameState(prev => ({ ...prev, status: 'boss-select' }))}
+          bestScore={bestScore} 
+        />
       )}
 
       {gameState.status === 'battle' && (

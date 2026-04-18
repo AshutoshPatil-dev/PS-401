@@ -13,7 +13,7 @@ const CHARACTERS: PlayerCharacter[] = [
     id: 'hero', 
     name: 'Golden Tome Novice', 
     maxHp: 120, 
-    description: 'A spirited youth holding an ancient scroll. Balanced stats and unyielding determination.', 
+    description: 'He is a swordsman. Balanced stats and unyielding determination.', 
     imagePath: '/hero.png',
     attackImagePaths: [
       '/hero_attack_1.png', 
@@ -29,14 +29,7 @@ const CHARACTERS: PlayerCharacter[] = [
     name: 'Qi Router Swift', 
     maxHp: 100, 
     description: 'A nimble swordmaster of the Frontend Sect. Relies on speed and precision strikes.',
-    imagePath: '/frontend.png',
-    attackImagePaths: [
-      '/frontend_attack_1.png', 
-      '/frontend_attack_2.png', 
-      '/frontend_attack_3.png'
-    ],
-    projectileImagePath: '/frontend_projectile.png',
-    attackType: 'ranged',
+    attackType: 'melee',
     winImagePath: '/frontend_win.png',
     deathImagePath: '/frontend_death.png'
   },
@@ -136,13 +129,21 @@ export default function App() {
   // Settings & Storage
   const [bestScore, setBestScore] = useState(0);
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const { playSuccess, playError, playClick } = useSound();
+  const { 
+    playSuccess, 
+    playError, 
+    playClick, 
+    playSwordAttack, 
+    playMagicAttack, 
+    playPunchAttack, 
+    playEnemyAttack 
+  } = useSound();
 
   const timerRef = useRef<number | null>(null);
 
   // Initialize
   useEffect(() => {
-    const saved = localStorage.getItem('murim_best_score');
+    const saved = localStorage.getItem('quizquest_best_score');
     if (saved) setBestScore(parseInt(saved, 10));
   }, []);
 
@@ -150,7 +151,7 @@ export default function App() {
   useEffect(() => {
     if ((gameState.status === 'win' || gameState.status === 'game-over') && gameState.score > bestScore) {
       setBestScore(gameState.score);
-      localStorage.setItem('murim_best_score', gameState.score.toString());
+      localStorage.setItem('quizquest_best_score', gameState.score.toString());
     }
   }, [gameState.status, gameState.score, bestScore]);
 
@@ -312,7 +313,13 @@ export default function App() {
     if (!currentQuestion || !enemy) return;
 
     if (isCorrect) {
-      if(soundEnabled) playSuccess();
+      if(soundEnabled) {
+        playSuccess();
+        // Play distinct player attack sound
+        if (playerChar?.id === 'hero') playSwordAttack();
+        else if (playerChar?.id === 'frontend') playMagicAttack();
+        else if (playerChar?.id === 'backend') playPunchAttack();
+      }
       const dmg = DAMAGE_MAP[currentQuestion.difficulty];
       setIsPlayerAttacking(true);
       
@@ -338,6 +345,7 @@ export default function App() {
       
       setTimeout(() => {
         setIsEnemyAttacking(true);
+        if(soundEnabled) playEnemyAttack();
         setTimeout(() => {
           setDamageTakenByPlayer(dmg);
           setGameState(prev => ({
@@ -448,7 +456,7 @@ export default function App() {
       {/* Global Header/Nav */}
       <header className="absolute top-0 w-full p-4 flex justify-between items-center z-50">
         <div className="font-black italic text-xl tracking-tighter text-slate-400">
-          Murim<span className="text-cyan-500">Codex</span>
+          QuizQuest<span className="text-cyan-500">Arena</span>
         </div>
         <button 
           onClick={() => setSoundEnabled(!soundEnabled)}
